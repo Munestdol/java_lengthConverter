@@ -1,12 +1,14 @@
 package Views;
 
 import Controllers.Controller;
+import Exeptions.EmptyFieldException;
 import Models.Converter;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 /**
  * <code> MainFrame </code> is an enhanced version of <code> JFrame </code>
@@ -19,15 +21,19 @@ import java.io.IOException;
 
 class MainFrame extends JFrame {
 
+    //creating an array of strings to fill the JComboBox
     private String[] items = {"millimeter", "centimeter", "meter", "kilometer", "foot", "mile"};
+    //creating elements for JFrame
     private JComboBox lengthlist1 = new JComboBox(items);
     private JComboBox lengthlist2 = new JComboBox(items);
     private JButton buttonConvert = new JButton("Convert");
     private JTextField tf1 = new JTextField(10);
     private JTextField tf2 = new JTextField(10);
     private JMenuBar menuBar = new JMenuBar();
+    //creating a Converter object for converting values
     Converter valueConverter = new Converter();
 
+    
     public MainFrame() {
         setBounds(100, 100, 500, 200);
         setTitle("Length Converter");
@@ -47,6 +53,7 @@ class MainFrame extends JFrame {
         add(panel2);
         ActionListener actionListener = new ButtonActionListener();
         buttonConvert.addActionListener(actionListener);
+        setResizable(false);
         setVisible(true);
     }
     public JMenuBar createMenuBar(){
@@ -86,8 +93,13 @@ class MainFrame extends JFrame {
 
     public class ButtonActionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            if(tf1.getText().equals("")) {
+            if (tf1.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Enter a value");
+                throw new RuntimeException("Empty field");
+            }
+            if (Pattern.matches("[a-zA-Zа-яА-ЯёЁ+*/&?(\\-+*.)|!@#№$;%:^\"]+", tf1.getText())) {
+                JOptionPane.showMessageDialog(null, "Field should contain letters");
+                throw new RuntimeException("Field should contain letters");
             }
 
             // convert for

@@ -19,32 +19,40 @@ public class AuthorFrame extends JFrame {
 
     public AuthorFrame() {
         setTitle("About author");
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLayout(new GridBagLayout());
-        constraints = new GridBagConstraints();
+        JPanel textPanel = new JPanel();
+        //textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.Y_AXIS));
+        setLayout(new BorderLayout(2,1));
+        JLabel[] textLabels = new JLabel[]{
+                new JLabel("Автор"),
+                new JLabel("студент группы 10702418"),
+                new JLabel("Кириллов Павел Сергеевич"),
+                new JLabel("munestdol@gmail.com")
+        };
+        Font font = new Font(Font.DIALOG, Font.BOLD, 16);
+        for (JLabel label : textLabels) {
+            label.setFont(font);
+            label.setAlignmentX(Component.CENTER_ALIGNMENT);
+            textPanel.add(label);
+        }
+        textPanel.add(addImageLabel());
+        JButton backButton = new JButton("Back");
+        add(textPanel, BorderLayout.CENTER);
+        add(backButton, BorderLayout.SOUTH);
         addImageLabel();
-        JLabel labelInfo = new JLabel("<html><left><h2>"
-                + "Author: Kirillov Pavel<br>"
-                + "Group: 10702418<br>"
-                + "</h2></left></html>");
-        add(labelInfo);
         pack();
-        setLocationRelativeTo(null);
+        setResizable(false);
         setVisible(true);
     }
 
-    private void addImageLabel() {
+    private JLabel addImageLabel() {
         ClassLoader loader = getClass().getClassLoader();
         URL url = loader.getResource("Image//author.jpg");
         if (url == null) {
-            return;
+            return null;
         }
         Image image = new ImageIcon(url).getImage();
         Image scaledImage = image.getScaledInstance(300, 300, SCALE_FAST);
         JLabel imageLabel = new JLabel(new ImageIcon(scaledImage));
-        constraints.gridwidth = 1;
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        add(imageLabel, constraints);
+        return imageLabel;
     }
 }
