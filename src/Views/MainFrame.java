@@ -54,7 +54,6 @@ class MainFrame extends JFrame {
         ActionListener actionListener = new ButtonActionListener();
         buttonConvert.addActionListener(actionListener);
         setResizable(false);
-        setVisible(true);
     }
     public JMenuBar createMenuBar(){
         JMenuBar menuBar = new JMenuBar();

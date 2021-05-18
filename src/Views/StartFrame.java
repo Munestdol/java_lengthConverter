@@ -2,8 +2,6 @@ package Views;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.net.URL;
 import static java.awt.Image.SCALE_FAST;
 
@@ -14,15 +12,32 @@ import static java.awt.Image.SCALE_FAST;
  *
  * @author Kirillov P.S.
  */
+
 public class StartFrame extends JFrame {
     private JButton startButton;
     private JButton closeButton;
+    private Timer timer;
+    private Thread mainFrameThread;
     private GridBagConstraints constraints;
 
+    private MainFrame mainFrame;
+
+    /**
+     * Starts a parallel thread, where <code>MainFrame</code> is being created,
+     * creates visible <code>SplashScreen</code> object and runs 60 seconds timer,
+     * which closes the <code>SplashScreen</code> if no button was pressed.
+     */
     public StartFrame() {
+
+        mainFrameThread = new Thread(() -> mainFrame = new MainFrame());
+        mainFrameThread.start();
+
+        final int delayMilliseconds = 60000;
+        timer = new Timer(delayMilliseconds, e -> System.exit(0));
+
         setLayout(new GridBagLayout());
         constraints = new GridBagConstraints();
-        addStartFrameText();
+        addSplashScreenText();
         startButton = createStartButton();
         closeButton = createCloseButton();
         addButtons();
@@ -30,13 +45,15 @@ public class StartFrame extends JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+
+        timer.start();
     }
 
-    private void addStartFrameText() {
+    private void addSplashScreenText() {
         addHeadLabel();
         addBodyLabel();
-        addInfoLabel();
         addImageLabel();
+        addInfoLabel();
     }
 
     private void addHeadLabel() {
@@ -58,7 +75,7 @@ public class StartFrame extends JFrame {
     private void addBodyLabel() {
         JLabel bodyLabel = new JLabel("<html><center><h1>Курсовая работа<br>"
                 + "по дисциплине «Программирование на Java»<br>"
-                + "Конвертер длин<br></h1></center></html>");
+                + "Конвертор едениц измерения длин<br></h1></center></html>");
         bodyLabel.setAlignmentX(JPanel.CENTER_ALIGNMENT);
         constraints.gridwidth = 2;
         constraints.gridx = 0;
@@ -68,12 +85,12 @@ public class StartFrame extends JFrame {
 
     private void addImageLabel() {
         ClassLoader loader = getClass().getClassLoader();
-        URL url = loader.getResource("Image//icon.png");
+        URL url = loader.getResource("Image/icon.png");
         if (url == null) {
             return;
         }
         Image image = new ImageIcon(url).getImage();
-        Image scaledImage = image.getScaledInstance(300, 300, SCALE_FAST);
+        Image scaledImage = image.getScaledInstance(200, 200, SCALE_FAST);
         JLabel imageLabel = new JLabel(new ImageIcon(scaledImage));
         constraints.gridwidth = 1;
         constraints.gridx = 0;
@@ -95,26 +112,13 @@ public class StartFrame extends JFrame {
 
     private JButton createStartButton() {
         JButton button = new JButton("Start");
-        button.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                MainFrame mainFrame = new MainFrame();
-                dispose();
-            }
-        });
+        button.addActionListener(e -> switchToMainFrame());
         return button;
     }
 
     private JButton createCloseButton() {
         JButton button = new JButton("Close");
-        button.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                System.exit(0);
-            }
-        });
+        button.addActionListener(e -> System.exit(0));
         return button;
     }
 
@@ -128,5 +132,16 @@ public class StartFrame extends JFrame {
         add(startButton, constraints);
         constraints.gridx = 1;
         add(closeButton, constraints);
+    }
+
+    private void switchToMainFrame() {
+        timer.stop();
+        try {
+            mainFrameThread.join();
+        } catch (InterruptedException exception) {
+            exception.printStackTrace();
+        }
+        dispose();
+        mainFrame.setVisible(true);
     }
 }

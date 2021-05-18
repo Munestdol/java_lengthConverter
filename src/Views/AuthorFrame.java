@@ -19,26 +19,20 @@ public class AuthorFrame extends JFrame {
 
     public AuthorFrame() {
         setTitle("About author");
-        JPanel textPanel = new JPanel();
-        //textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.Y_AXIS));
-        setLayout(new BorderLayout(2,1));
-        JLabel[] textLabels = new JLabel[]{
-                new JLabel("Автор"),
-                new JLabel("студент группы 10702418"),
-                new JLabel("Кириллов Павел Сергеевич"),
-                new JLabel("munestdol@gmail.com")
-        };
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        JLabel textLabel = new JLabel("<html>" +
+                "Автор<br>" +
+                "студент группы 10702418<br>" +
+                "Кириллов Павел Сергеевич<br>" +
+                "munestdol@gmail.com<br>" +
+                "</html>");
         Font font = new Font(Font.DIALOG, Font.BOLD, 16);
-        for (JLabel label : textLabels) {
-            label.setFont(font);
-            label.setAlignmentX(Component.CENTER_ALIGNMENT);
-            textPanel.add(label);
-        }
-        textPanel.add(addImageLabel());
-        JButton backButton = new JButton("Back");
-        add(textPanel, BorderLayout.CENTER);
-        add(backButton, BorderLayout.SOUTH);
-        addImageLabel();
+        textLabel.setFont(font);
+
+        panel.add(addImageLabel());
+        panel.add(textLabel);
+        add(panel, BorderLayout.CENTER);
         pack();
         setResizable(false);
         setVisible(true);
@@ -51,7 +45,7 @@ public class AuthorFrame extends JFrame {
             return null;
         }
         Image image = new ImageIcon(url).getImage();
-        Image scaledImage = image.getScaledInstance(300, 300, SCALE_FAST);
+        Image scaledImage = image.getScaledInstance(400, 400, SCALE_FAST);
         JLabel imageLabel = new JLabel(new ImageIcon(scaledImage));
         return imageLabel;
     }
