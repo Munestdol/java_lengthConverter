@@ -28,7 +28,6 @@ public class StartFrame extends JFrame {
      * which closes the <code>SplashScreen</code> if no button was pressed.
      */
     public StartFrame() {
-
         mainFrameThread = new Thread(() -> mainFrame = new MainFrame());
         mainFrameThread.start();
 
@@ -44,6 +43,7 @@ public class StartFrame extends JFrame {
         setUndecorated(true);
         pack();
         setLocationRelativeTo(null);
+
         setVisible(true);
 
         timer.start();
@@ -54,6 +54,7 @@ public class StartFrame extends JFrame {
         addBodyLabel();
         addImageLabel();
         addInfoLabel();
+        addBotLabel();
     }
 
     private void addHeadLabel() {
@@ -125,7 +126,7 @@ public class StartFrame extends JFrame {
     private void addButtons() {
         constraints.gridwidth = 1;
         constraints.gridx = 0;
-        constraints.gridy = 3;
+        constraints.gridy = 4;
         constraints.weightx = 0.5;
         constraints.ipady = 20;
         constraints.fill = GridBagConstraints.HORIZONTAL;
@@ -143,5 +144,13 @@ public class StartFrame extends JFrame {
         }
         dispose();
         mainFrame.setVisible(true);
+    }
+
+    private void addBotLabel(){
+        JLabel bottomLabel = new JLabel("<html><h2>Минск, 2021<br></h2></html>");
+        constraints.gridwidth = 2;
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        add(bottomLabel, constraints);
     }
 }

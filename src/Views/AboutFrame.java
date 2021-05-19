@@ -32,9 +32,12 @@ public class AboutFrame extends JFrame {
                 + "</left></html>");
         Font font = new Font(Font.DIALOG, Font.BOLD, 16);
         labelInfo.setFont(font);
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> dispose());
         panel.add(addImageLabel());
         panel.add(labelInfo);
         add(panel, BorderLayout.CENTER);
+        add(backButton, BorderLayout.SOUTH);
         pack();
         setResizable(false);
         setVisible(true);

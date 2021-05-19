@@ -18,6 +18,7 @@ public class AuthorFrame extends JFrame {
     private GridBagConstraints constraints;
 
     public AuthorFrame() {
+
         setTitle("About author");
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -29,10 +30,12 @@ public class AuthorFrame extends JFrame {
                 "</html>");
         Font font = new Font(Font.DIALOG, Font.BOLD, 16);
         textLabel.setFont(font);
-
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> dispose());
         panel.add(addImageLabel());
         panel.add(textLabel);
         add(panel, BorderLayout.CENTER);
+        add(backButton, BorderLayout.SOUTH);
         pack();
         setResizable(false);
         setVisible(true);

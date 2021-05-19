@@ -35,6 +35,7 @@ class MainFrame extends JFrame {
 
     
     public MainFrame() {
+
         setBounds(100, 100, 500, 200);
         setTitle("Length Converter");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
