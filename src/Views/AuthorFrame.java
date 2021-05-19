@@ -12,10 +12,10 @@ import static java.awt.Image.SCALE_FAST;
  *
  * @author Kirillov P.S.
  */
-
 public class AuthorFrame extends JFrame {
 
     private GridBagConstraints constraints;
+
     /**
      * Constructor for creating the <code>AuthorFrame</code>
      */

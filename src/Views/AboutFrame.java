@@ -11,7 +11,6 @@ import static java.awt.Image.SCALE_FAST;
  *
  * @author Kirillov P.S.
  */
-
 public class AboutFrame extends JFrame {
     /**
      * Constructor for creating the <code>AboutFrame</code>

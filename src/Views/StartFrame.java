@@ -12,15 +12,14 @@ import static java.awt.Image.SCALE_FAST;
  *
  * @author Kirillov P.S.
  */
-
 public class StartFrame extends JFrame {
-    //creating elements for creat JFrame
+
     private JButton startButton;
     private JButton closeButton;
     private Timer timer;
     private Thread mainFrameThread;
     private GridBagConstraints constraints;
-    //creating a MainFrame object
+
     private MainFrame mainFrame;
 
     /**

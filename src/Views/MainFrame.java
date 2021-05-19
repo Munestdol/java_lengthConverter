@@ -9,19 +9,16 @@ import java.awt.event.ActionListener;
 import java.util.regex.Pattern;
 
 /**
- * <code> MainFrame </code> is an enhanced version of <code> JFrame </code>
+ * <code>MainFrame</code> is an enhanced version of <code>JFrame</code>
  * , which allows you to convert units of lengths (millimeters, centimeters, meters, kilometers, feet, miles).
  * Contains, button "Convert", two JComboBox, two JTextField and JMenuBar "File"
  * with JMenuItem "Author", "About", "Close".
  *
  * @author Kirillov P.S.
  */
+public class MainFrame extends JFrame {
 
-class MainFrame extends JFrame {
-
-    //creating an array of strings to fill the JComboBox
     private String[] items = {"millimeter", "centimeter", "meter", "kilometer", "foot", "mile"};
-    //creating elements for creat JFrame
     private JComboBox lengthlist1 = new JComboBox(items);
     private JComboBox lengthlist2 = new JComboBox(items);
     private JButton buttonConvert = new JButton("Convert");
