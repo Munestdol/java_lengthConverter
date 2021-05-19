@@ -23,7 +23,7 @@ public class Converter {
          cantimeter = 1;
          meter = 0.01f;
          kilometer = 0.00001f;
-         foot = 30.48f;
+         foot = (1f/30.48f);
          mile = (1f/160934f);
     }
     /**
@@ -43,9 +43,9 @@ public class Converter {
     public void ForMillimeter(){
         millimeter = 1;
         cantimeter = 0.1f;
-        meter = 0.01f;
-        kilometer = 0.00001f;
-        foot = 305f;
+        meter = 0.001f;
+        kilometer = 0.000001f;
+        foot = (1f/305f);
         mile = (1f/1609340f);
     }
     /**

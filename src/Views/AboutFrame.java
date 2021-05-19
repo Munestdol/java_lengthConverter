@@ -53,7 +53,7 @@ public class AboutFrame extends JFrame {
             return null;
         }
         Image image = new ImageIcon(url).getImage();
-        Image scaledImage = image.getScaledInstance(500, 250, SCALE_FAST);
+        Image scaledImage = image.getScaledInstance(400, 250, SCALE_FAST);
         JLabel imageLabel = new JLabel(new ImageIcon(scaledImage));
         return imageLabel;
     }
