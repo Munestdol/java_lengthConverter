@@ -1,13 +1,11 @@
 package Views;
 
 import Controllers.Controller;
-import Exeptions.EmptyFieldException;
 import Models.Converter;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.regex.Pattern;
 
 /**
@@ -23,19 +21,21 @@ class MainFrame extends JFrame {
 
     //creating an array of strings to fill the JComboBox
     private String[] items = {"millimeter", "centimeter", "meter", "kilometer", "foot", "mile"};
-    //creating elements for JFrame
+    //creating elements for creat JFrame
     private JComboBox lengthlist1 = new JComboBox(items);
     private JComboBox lengthlist2 = new JComboBox(items);
     private JButton buttonConvert = new JButton("Convert");
     private JTextField tf1 = new JTextField(10);
     private JTextField tf2 = new JTextField(10);
     private JMenuBar menuBar = new JMenuBar();
+
     //creating a Converter object for converting values
     Converter valueConverter = new Converter();
 
-    
+    /**
+     * Constructor for creating the <code>MainFrame</code>
+     */
     public MainFrame() {
-
         setBounds(100, 100, 500, 200);
         setTitle("Length Converter");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,6 +56,10 @@ class MainFrame extends JFrame {
         buttonConvert.addActionListener(actionListener);
         setResizable(false);
     }
+
+    /**
+     * Constructor for customizing JMenuBar
+     */
     public JMenuBar createMenuBar(){
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("File");
@@ -91,6 +95,10 @@ class MainFrame extends JFrame {
         return menuBar;
     }
 
+    /**
+     * Listener for the button. When you click the button, the Converter method is called,
+     * and depending on the units of measurement, the conversion takes place.
+     */
     public class ButtonActionListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if (tf1.getText().equals("")) {

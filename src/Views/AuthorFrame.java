@@ -16,9 +16,10 @@ import static java.awt.Image.SCALE_FAST;
 public class AuthorFrame extends JFrame {
 
     private GridBagConstraints constraints;
-
+    /**
+     * Constructor for creating the <code>AuthorFrame</code>
+     */
     public AuthorFrame() {
-
         setTitle("About author");
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -40,7 +41,9 @@ public class AuthorFrame extends JFrame {
         setResizable(false);
         setVisible(true);
     }
-
+    /**
+     * Method for creating and adjusting an image for <code>AuthorFrame</code>
+     */
     private JLabel addImageLabel() {
         ClassLoader loader = getClass().getClassLoader();
         URL url = loader.getResource("Image//author.jpg");

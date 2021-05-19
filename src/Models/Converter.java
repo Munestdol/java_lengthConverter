@@ -15,6 +15,9 @@ public class Converter {
     private float foot;
     private float mile;
 
+    /**
+     * Adjusts coefficients for centimeters
+     */
     public void ForCantimeter(){
          millimeter = 10;
          cantimeter = 1;
@@ -23,7 +26,9 @@ public class Converter {
          foot = 30.48f;
          mile = (1f/160934f);
     }
-
+    /**
+     * Adjusts coefficients for meters
+     */
     public void ForMeter(){
          millimeter = 1000;
          cantimeter = 100;
@@ -32,7 +37,9 @@ public class Converter {
          foot = 3.281f;
          mile = (1f/1609f);
     }
-
+    /**
+     * Adjusts coefficients for millimeters
+     */
     public void ForMillimeter(){
         millimeter = 1;
         cantimeter = 0.1f;
@@ -41,7 +48,9 @@ public class Converter {
         foot = 305f;
         mile = (1f/1609340f);
     }
-
+    /**
+     * Adjusts coefficients for kilometers
+     */
     public void ForKilometer(){
         millimeter = 1000000;
         cantimeter = 100000;
@@ -51,6 +60,9 @@ public class Converter {
         mile = (1f/1.609f);
     }
 
+    /**
+     * Adjusts coefficients for foot
+     */
     public void ForFoot() {
         millimeter = 304.8f;
         cantimeter = 30.48f;
@@ -60,6 +72,9 @@ public class Converter {
         mile = (1f/ 5280f);
     }
 
+    /**
+     * Adjusts coefficients for mile
+     */
     public void ForMile() {
         millimeter = 1609340;
         cantimeter = 160934;

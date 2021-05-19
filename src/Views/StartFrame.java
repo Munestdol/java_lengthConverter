@@ -14,18 +14,19 @@ import static java.awt.Image.SCALE_FAST;
  */
 
 public class StartFrame extends JFrame {
+    //creating elements for creat JFrame
     private JButton startButton;
     private JButton closeButton;
     private Timer timer;
     private Thread mainFrameThread;
     private GridBagConstraints constraints;
-
+    //creating a MainFrame object
     private MainFrame mainFrame;
 
     /**
      * Starts a parallel thread, where <code>MainFrame</code> is being created,
-     * creates visible <code>SplashScreen</code> object and runs 60 seconds timer,
-     * which closes the <code>SplashScreen</code> if no button was pressed.
+     * creates visible <code>StartFrame</code> object and runs 60 seconds timer,
+     * which closes the <code>StartFrame</code> if no button was pressed.
      */
     public StartFrame() {
         mainFrameThread = new Thread(() -> mainFrame = new MainFrame());
@@ -36,7 +37,7 @@ public class StartFrame extends JFrame {
 
         setLayout(new GridBagLayout());
         constraints = new GridBagConstraints();
-        addSplashScreenText();
+        addStartFrameText();
         startButton = createStartButton();
         closeButton = createCloseButton();
         addButtons();
@@ -48,15 +49,19 @@ public class StartFrame extends JFrame {
 
         timer.start();
     }
-
-    private void addSplashScreenText() {
+    /**
+     * Method that calls methods that add elements for <code> StartFrame </code>
+     */
+    private void addStartFrameText() {
         addHeadLabel();
         addBodyLabel();
         addImageLabel();
         addInfoLabel();
         addBotLabel();
     }
-
+    /**
+     * The method that adds the JLabel for the head.
+     */
     private void addHeadLabel() {
         JLabel headLabel = new JLabel("<html><center><h2>"
                 + "Белорусский национальный технический университет<br>"
@@ -72,7 +77,9 @@ public class StartFrame extends JFrame {
         add(headLabel, constraints);
         constraints.insets = oldInsets;
     }
-
+    /**
+     * The method that adds the JLabel for the body.
+     */
     private void addBodyLabel() {
         JLabel bodyLabel = new JLabel("<html><center><h1>Курсовая работа<br>"
                 + "по дисциплине «Программирование на Java»<br>"
@@ -84,6 +91,9 @@ public class StartFrame extends JFrame {
         add(bodyLabel, constraints);
     }
 
+    /**
+     * The method that adds the Image.
+     */
     private void addImageLabel() {
         ClassLoader loader = getClass().getClassLoader();
         URL url = loader.getResource("Image/icon.png");
@@ -99,6 +109,9 @@ public class StartFrame extends JFrame {
         add(imageLabel, constraints);
     }
 
+    /**
+     * The method that adds the JLabel.
+     */
     private void addInfoLabel() {
         JLabel infoLabel = new JLabel("<html><h2>"
                 + "Выполнил: студент группы 10702418<br>"
@@ -110,19 +123,26 @@ public class StartFrame extends JFrame {
         constraints.gridy = 2;
         add(infoLabel, constraints);
     }
-
+    /**
+     * JButton setting method for starting the main application
+     */
     private JButton createStartButton() {
         JButton button = new JButton("Start");
         button.addActionListener(e -> switchToMainFrame());
         return button;
     }
-
+    /**
+     * JButton setting method for closing the main application
+     */
     private JButton createCloseButton() {
         JButton button = new JButton("Close");
         button.addActionListener(e -> System.exit(0));
         return button;
     }
 
+    /**
+     * The method that adds the JButton.
+     */
     private void addButtons() {
         constraints.gridwidth = 1;
         constraints.gridx = 0;
@@ -135,6 +155,9 @@ public class StartFrame extends JFrame {
         add(closeButton, constraints);
     }
 
+    /**
+     * Method to go to the main window.
+     */
     private void switchToMainFrame() {
         timer.stop();
         try {
@@ -145,7 +168,9 @@ public class StartFrame extends JFrame {
         dispose();
         mainFrame.setVisible(true);
     }
-
+    /**
+     * The method that adds the JLabel for the bot.
+     */
     private void addBotLabel(){
         JLabel bottomLabel = new JLabel("<html><h2>Минск, 2021<br></h2></html>");
         constraints.gridwidth = 2;

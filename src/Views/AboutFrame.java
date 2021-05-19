@@ -3,8 +3,6 @@ package Views;
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
-
-import static java.awt.Image.SCALE_DEFAULT;
 import static java.awt.Image.SCALE_FAST;
 
 /**
@@ -15,6 +13,9 @@ import static java.awt.Image.SCALE_FAST;
  */
 
 public class AboutFrame extends JFrame {
+    /**
+     * Constructor for creating the <code>AboutFrame</code>
+     */
     public AboutFrame(){
         setTitle("About program");
         JPanel panel = new JPanel();
@@ -43,6 +44,9 @@ public class AboutFrame extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Method for creating and adjusting an image for <code>AboutFrame</code>
+     */
     private JLabel addImageLabel() {
         ClassLoader loader = getClass().getClassLoader();
         URL url = loader.getResource("Image//aboutProgram.png");
